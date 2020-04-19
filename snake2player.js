@@ -30,6 +30,31 @@ var grade_lock;
 var border_lock;
 var pre_move = [[],[]];
 
+//聲音設定
+
+//開場音樂
+var opensound = new Audio();
+opensound.src="titleBGM.mp3";
+
+// 遊戲音樂
+var mainsound = new Audio();
+mainsound.src="dejaVuBGM.mp3";
+
+// 死亡音樂
+var deadsound = new Audio();
+deadsound.src="enemyAttack.mp3";
+
+//進食音樂
+var eatsound = new Audio();
+eatsound.src="MarioCoin.mp3";
+
+
+// GameOver音樂
+var gameoversound = new Audio();
+gameoversound.src="gameoverBGM.mp3";
+
+
+
 
 var settings = document.setting
 for(var i = 0; i < settings.length; i++){
@@ -276,6 +301,8 @@ function creat_food(){
 function eat_food(player){
 	for(i = 0; i < food_array.length; i++){
 		if(snake_head[player].style.left == food_array[i].style.left && snake_head[player].style.top == food_array[i].style.top){
+			
+			eatsound.play();
 
 			var food = food_array[i]
 			var pg = document.getElementById("playground")
@@ -296,6 +323,17 @@ function end(player){
 }
 
 function pause(player){
+
+	if(pause_b)
+	{
+		opensound.pause();
+		mainsound.play();
+	}
+	else
+	{
+		mainsound.pause();
+	}
+
 	pause_b = !pause_b
 	dir_lock[player] = false	
 }
@@ -332,6 +370,8 @@ function restart(){
 	for (var i = 0; i < setting("n_food"); i++) {
 		creat_food()
 	}
+	
+	opensound.play();
 }
 function remove_snake_body(player){
 	var length = snake_body_array[player].length
@@ -465,6 +505,13 @@ function without_border(player){
 	}
 }
 function dead_gray(player){
+	
+	deadsound.play();
+
+	mainsound.pause();
+
+	gameoversound.play();
+
 	for (var i = 0; i < snake_body_array[player].length; i++) {
 		var gradient = 30 + parseInt((1-i/snake_body_array[player].length)*50)
 		snake_body_array[player][i].style.filter = "opacity("+gradient+"%)blur(1px)"
@@ -472,6 +519,7 @@ function dead_gray(player){
 	}
 	// snake_head[player].style.filter = "grayscale(80%)blur(1px)"
 	document.getElementById("snake_head_"+player).setAttribute("style", "filter: opacity(80%)blur(1px)")
+	
 }
 
 function pre_control(player,keycode){	
@@ -531,9 +579,12 @@ function turn_direction(player){
 	}
 }
 
-
-restart()
 alert("press space to start/pause")
+restart()
+
+
+
+
 // document.getElementById('testbutton1').onclick = restart
 // document.getElementById('testbutton2').onclick = check_value
 // document.getElementById('testbutton3').onclick = creat_food
