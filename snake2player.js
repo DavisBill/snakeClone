@@ -302,6 +302,9 @@ function eat_food(player){
 	for(i = 0; i < food_array.length; i++){
 		if(snake_head[player].style.left == food_array[i].style.left && snake_head[player].style.top == food_array[i].style.top){
 			
+
+			eatsound.currentTime =0;
+			
 			eatsound.play();
 
 			var food = food_array[i]
