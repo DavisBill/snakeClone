@@ -30,15 +30,19 @@ var grade_lock;
 var border_lock;
 var pre_move = [[],[]];
 
+var playing = false;
+
 //聲音設定
 
 //開場音樂
 var opensound = new Audio();
 opensound.src="resource/audio/titleBGM.mp3";
+opensound.loop = true; // 設定重覆播放
 
 // 遊戲音樂
 var mainsound = new Audio();
-mainsound.src="resource/audio/dejaVuBGM.mp3";
+mainsound.src="resource/audio/MaruMoriBGM.mp3";
+mainsound.loop = true; // 設定重覆播放
 
 // 死亡音樂
 var deadsound = new Audio();
@@ -330,6 +334,8 @@ function pause(player){
 	// 按下空白建後，將所有的Focus 取消掉，可以避免 若原本僅要移動人物，卻誤觸使控制面板設定跑掉，遊戲機制重啟的問題
 	document.activeElement.blur();
 	
+	playing = true;
+
 	if(pause_b)
 	{
 		opensound.pause();
@@ -421,18 +427,27 @@ function score(player){
 function grade(player){
 	if(snake_body_id_num[player] < 5 && t[player] <200){
 		return
-	}else if(snake_body_id_num[player] < 20 &&  t[player] < 150){
+	}
+	else if(snake_body_id_num[player] < 20 &&  t[player] < 150){
 		return
-	}else if(snake_body_id_num[player] < 35 && t[player] < 95){
+	}
+	else if(snake_body_id_num[player] < 35 && t[player] < 120){
 		return
-	}else if(snake_body_id_num[player] < 80 && t[player] < 75){
+	}
+	else if(snake_body_id_num[player] > 35 ){
 		return
-	}else if(snake_body_id_num[player] < 130 && t[player] < 65){
-		return
-	}else if(snake_body_id_num[player] < 150 && t[player] < 55){
-		return
-
-	}else{
+	}
+	// 稍微調整速度上限，避免遊戲後期速度過快
+	// else if(snake_body_id_num[player] < 80 && t[player] < 75){
+	// 	return
+	// }
+	// else if(snake_body_id_num[player] < 130 && t[player] < 65){
+	// 	return
+	// }
+	// else if(snake_body_id_num[player] < 150 && t[player] < 55){
+	// 	return
+	// }
+	else{
 		faster(player)
 	}
 }
@@ -512,6 +527,9 @@ function without_border(player){
 }
 function dead_gray(player){
 	
+
+	playing = false;
+
 	deadsound.play();
 
 	mainsound.pause();
