@@ -524,7 +524,11 @@ function dead_gray(player){
 		// console.log()
 	}
 	// snake_head[player].style.filter = "grayscale(80%)blur(1px)"
-	document.getElementById("snake_head_"+player).setAttribute("style", "filter: opacity(80%)blur(1px)")
+
+	//document.getElementById("snake_head_"+player).setAttribute("style", "filter: opacity(80%)blur(1px)")
+
+	// 撞擊死亡後。更換頭像
+	document.getElementById("snake_head_"+player).setAttribute("style", "background-image: url('resource/image/RabitNo.gif')")
 	
 }
 
