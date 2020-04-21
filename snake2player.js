@@ -34,24 +34,24 @@ var pre_move = [[],[]];
 
 //開場音樂
 var opensound = new Audio();
-opensound.src="titleBGM.mp3";
+opensound.src="resource/audio/titleBGM.mp3";
 
 // 遊戲音樂
 var mainsound = new Audio();
-mainsound.src="dejaVuBGM.mp3";
+mainsound.src="resource/audio/dejaVuBGM.mp3";
 
 // 死亡音樂
 var deadsound = new Audio();
-deadsound.src="enemyAttack.mp3";
+deadsound.src="resource/audio/enemyAttack.mp3";
 
 //進食音樂
 var eatsound = new Audio();
-eatsound.src="MarioCoin.mp3";
+eatsound.src="resource/audio/MarioCoin.mp3";
 
 
 // GameOver音樂
 var gameoversound = new Audio();
-gameoversound.src="gameoverBGM.mp3";
+gameoversound.src="resource/audio/gameoverBGM.mp3";
 
 
 
@@ -327,6 +327,9 @@ function end(player){
 
 function pause(player){
 
+	// 按下空白建後，將所有的Focus 取消掉，可以避免 若原本僅要移動人物，卻誤觸使控制面板設定跑掉，遊戲機制重啟的問題
+	document.activeElement.blur();
+	
 	if(pause_b)
 	{
 		opensound.pause();
