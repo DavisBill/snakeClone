@@ -62,7 +62,7 @@ gameoversound.src="resource/audio/gameoverBGM.mp3";
 
 var settings = document.setting
 for(var i = 0; i < settings.length; i++){
-	settings[i].addEventListener("change",restart)
+	settings[i].addEventListener("change",settingChange)
 }
 
 
@@ -338,6 +338,7 @@ function pause(player){
 
 	if(pause_b)
 	{
+		gameoversound.pause();
 		opensound.pause();
 		mainsound.play();
 	}
@@ -350,7 +351,31 @@ function pause(player){
 	dir_lock[player] = false	
 }
 
+
+function settingChange()
+{
+	if(playing)
+	{
+		var r=confirm("Do you want to restart Game?")
+		if (r==true)
+		{
+			playing = false;
+			restart();		
+		}		
+	}else
+	{
+		restart();		
+	}
+}
+
+
 function restart(){
+
+	playing = false;
+	mainsound.currentTime =0;
+	mainsound.pause();
+	gameoversound.pause();
+
 	for(ii = 0; ii < player_num; ii++){
 		end(ii)
 		remove_snake_body(ii)
@@ -383,6 +408,7 @@ function restart(){
 		creat_food()
 	}
 	
+	opensound.currentTime =0;
 	opensound.play();
 }
 function remove_snake_body(player){
@@ -527,8 +553,13 @@ function without_border(player){
 }
 function dead_gray(player){
 	
+	if(!playing)
+	{
+		return;
+	}
 
 	playing = false;
+	
 
 	deadsound.play();
 
