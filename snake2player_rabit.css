@@ -14,48 +14,48 @@ button {color:black; font-size:20px; margin:2px;  background-color: gray}
 	form {visibility: hidden; display: none; clear: both; width: 25%; height: 100%;background-color: gray;}	
 	#upTouchBtn {
 		background-color: rgb(223, 16, 16);
-		width: 75px;
-		height: 75px;
+		width: 100px;
+		height: 100px;
 		position: fixed;
 		font-size: 40px;
 		top: 900px;
-		left: 0px;
+		left: 300px;
 		border-style: solid;
 		opacity: 0.5;
 		display: block;
 	}
 	#downTouchBtn {
 		background-color: rgb(223, 16, 16);
-		width: 75px;
-		height: 75px;
+		width: 100px;
+		height: 100px;
 		position: fixed;
 		font-size: 40px;
-		top: 975px;
-		left: 0px;
+		top: 1500px;
+		left: 300px;
 		border-style: solid;
 		opacity: 0.5;
 		display: block;
 	}
 	#leftTouchBtn {
 		background-color: rgb(223, 16, 16);
-		width: 75px;
-		height: 75px;
+		width: 100px;
+		height: 100px;
 		position: fixed;
 		font-size: 40px;
-		top: 900px;
-		left: 300px;
+		top: 1200px;
+		left: 0px;
 		border-style: solid;
 		opacity: 0.5;
 		display: block;
 	}
 	#rightTouchBtn {
 		background-color: rgb(223, 16, 16);
-		width: 75px;
-		height: 75px;
+		width: 100px;
+		height: 100px;
 		position: fixed;
 		font-size: 40px;
-		top: 975px;
-		left: 300px;
+		top: 1200px;
+		left: 600px;
 		border-style: solid;
 		opacity: 0.5;
 		display: block;
