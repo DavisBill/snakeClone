@@ -16,7 +16,8 @@ button {color:black; font-size:20px; margin:2px;  background-color: gray}
 
 @media screen and (max-width: 1000px) {
 	form {visibility: hidden; display: none; clear: both; width: 25%; height: 100%;background-color: gray;}	
-	#upTouchBtn {
+
+	/* #upTouchBtn {
 		background-color: rgb(223, 16, 16);
 		width: 100px;
 		height: 100px;
@@ -28,6 +29,7 @@ button {color:black; font-size:20px; margin:2px;  background-color: gray}
 		opacity: 0.5;
 		display: block;
 	}
+
 	#downTouchBtn {
 		background-color: rgb(223, 16, 16);
 		width: 100px;
@@ -63,7 +65,8 @@ button {color:black; font-size:20px; margin:2px;  background-color: gray}
 		border-style: solid;
 		opacity: 0.5;
 		display: block;
-	}
+	} */
+
 	#phoneStartBtn {
 		background-color: white;
 		width: 200px;
@@ -84,7 +87,7 @@ button {color:black; font-size:20px; margin:2px;  background-color: gray}
 	#playground {
 		background-color: white;
 		width: 1000px;
-		height: 800px;
+		height: 500px;
 		position: relative;
 		font-size: 40px;
 		border-style: solid;	
@@ -95,14 +98,15 @@ button {color:black; font-size:20px; margin:2px;  background-color: gray}
 	#playground {
 		background-color: white;
 		width: 1000px;
-		height: 800px;
+		height: 500px;
 		position: fixed;
 		font-size: 40px;
 		top: 10px;
 		left: 400px; 
 		border-style: solid;	
 	}
-	#upTouchBtn {
+	
+	/* #upTouchBtn {
 		background-color: rgb(223, 16, 16);
 		width: 50px;
 		height: 50px;
@@ -149,7 +153,8 @@ button {color:black; font-size:20px; margin:2px;  background-color: gray}
 		border-style: solid;
 		opacity: 0.5;
 		display: none;	
-	}
+	} */
+
 	#phoneStartBtn {
 		background-color: white;
 		width: 200px;

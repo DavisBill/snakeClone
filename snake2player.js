@@ -8,7 +8,7 @@ var playground = get_rule('#playground')
 
 // 為了響應 螢幕長寬 CSS 自動識別，先暫且硬寫
 var playground_w = 1000;
-var playground_h = 800;
+var playground_h = 500;
 
 
 var x;
@@ -303,38 +303,39 @@ function keboard_control(event){
 	}
 }
 
-// 手機螢幕  觸碰 監聽事件
-document.getElementById("upTouchBtn").addEventListener("touchend",touch_control);
-document.getElementById("downTouchBtn").addEventListener("touchend",touch_control);
-document.getElementById("leftTouchBtn").addEventListener("touchend",touch_control);
-document.getElementById("rightTouchBtn").addEventListener("touchend",touch_control);
+// 有更好的方法，使用滑動
+// // 手機螢幕  觸碰 監聽事件
+// document.getElementById("upTouchBtn").addEventListener("touchend",touch_control);
+// document.getElementById("downTouchBtn").addEventListener("touchend",touch_control);
+// document.getElementById("leftTouchBtn").addEventListener("touchend",touch_control);
+// document.getElementById("rightTouchBtn").addEventListener("touchend",touch_control);
 
-document.getElementById("phoneStartBtn").addEventListener("touchend",touch_control);
+// document.getElementById("phoneStartBtn").addEventListener("touchend",touch_control);
 
-function touch_control(event)
-{
-	switch(event.srcElement.id){
-		case "upTouchBtn":
-			// 方向鍵上 Code 為38
-			pre_control(0,38)
-			break;
-		case "downTouchBtn":
-			// 方向鍵下 Code 為40
-			pre_control(0,40)
-			break;
-		case "leftTouchBtn":
-			// 方向鍵左 Code 為37
-			pre_control(0,37)
-		case "rightTouchBtn":
-			// 方向鍵右 Code 為39
-			pre_control(0,39)
-			break;		
-		case "phoneStartBtn":
-		// 空白鍵 Code 為32
-		pause();
-		break;		
-	}
-}
+// function touch_control(event)
+// {
+// 	switch(event.srcElement.id){
+// 		case "upTouchBtn":
+// 			// 方向鍵上 Code 為38
+// 			pre_control(0,38)
+// 			break;
+// 		case "downTouchBtn":
+// 			// 方向鍵下 Code 為40
+// 			pre_control(0,40)
+// 			break;
+// 		case "leftTouchBtn":
+// 			// 方向鍵左 Code 為37
+// 			pre_control(0,37)
+// 		case "rightTouchBtn":
+// 			// 方向鍵右 Code 為39
+// 			pre_control(0,39)
+// 			break;		
+// 		case "phoneStartBtn":
+// 		// 空白鍵 Code 為32
+// 		pause();
+// 		break;		
+// 	}
+// }
 
 
 addEventListener("touchstart", handleTouchEvent);
@@ -742,6 +743,10 @@ function turn_direction(player){
 }
 
 alert("press space to start/pause")
+
+// 進入全屏模式
+document.body.requestFullscreen();
+
 restart()
 
 
