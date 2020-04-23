@@ -337,6 +337,48 @@ function touch_control(event)
 }
 
 
+addEventListener("touchstart", handleTouchEvent);
+addEventListener("touchend", handleTouchEvent);
+addEventListener("touchmove", handleTouchEvent);
+var startX;
+var startY;
+function handleTouchEvent(event) {
+	switch (event.type){
+		case "touchstart":
+			startX = event.touches[0].pageX;
+			startY = event.touches[0].pageY;
+			break;
+		case "touchend":
+			var spanX = event.changedTouches[0].pageX - startX;
+			var spanY = event.changedTouches[0].pageY - startY;
+
+			if(Math.abs(spanX) > Math.abs(spanY)){      //認定水平方向
+				if(spanX > 30){       
+					// 方向鍵右 Code 為39
+					pre_control(0,39)
+				} else if(spanX < -30){ 
+					// 方向鍵左 Code 為37
+					pre_control(0,37)
+				}
+			} else {                                    //認定为垂直方向
+				if(spanY > 30){         
+					// 方向鍵下 Code 為40
+					pre_control(0,40)
+				} else if (spanY < -30) {
+					// 方向鍵上 Code 為38
+					pre_control(0,38)
+				}
+			}
+
+			break;
+		case "touchmove":	
+			event.preventDefault();			
+	}
+	}
+
+
+
+
 
 function creat_food(){
 
