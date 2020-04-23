@@ -68,13 +68,14 @@ button {color:black; font-size:20px; margin:2px;  background-color: gray}
 	} */
 
 	#phoneStartBtn {
-		background-color: white;
+		background-color: rgb(207, 21, 21);
 		width: 200px;
 		height: 50px;
-		position: fixed;
 		font-size: 40px;
-		top: 800px;	
-		border-style: solid;	
+		position: fixed;
+		top: 250px;
+		left: 500px;
+		border-style: solid;
 		display: block;
 	}
   }

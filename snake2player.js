@@ -310,37 +310,40 @@ function keboard_control(event){
 // document.getElementById("leftTouchBtn").addEventListener("touchend",touch_control);
 // document.getElementById("rightTouchBtn").addEventListener("touchend",touch_control);
 
-// document.getElementById("phoneStartBtn").addEventListener("touchend",touch_control);
+document.getElementById("phoneStartBtn").addEventListener("touchend",touch_control);
 
-// function touch_control(event)
-// {
-// 	switch(event.srcElement.id){
-// 		case "upTouchBtn":
-// 			// 方向鍵上 Code 為38
-// 			pre_control(0,38)
-// 			break;
-// 		case "downTouchBtn":
-// 			// 方向鍵下 Code 為40
-// 			pre_control(0,40)
-// 			break;
-// 		case "leftTouchBtn":
-// 			// 方向鍵左 Code 為37
-// 			pre_control(0,37)
-// 		case "rightTouchBtn":
-// 			// 方向鍵右 Code 為39
-// 			pre_control(0,39)
-// 			break;		
-// 		case "phoneStartBtn":
-// 		// 空白鍵 Code 為32
-// 		pause();
-// 		break;		
-// 	}
-// }
+function touch_control(event)
+{
+	switch(event.srcElement.id){
+		// case "upTouchBtn":
+		// 	// 方向鍵上 Code 為38
+		// 	pre_control(0,38)
+		// 	break;
+		// case "downTouchBtn":
+		// 	// 方向鍵下 Code 為40
+		// 	pre_control(0,40)
+		// 	break;
+		// case "leftTouchBtn":
+		// 	// 方向鍵左 Code 為37
+		// 	pre_control(0,37)
+		// case "rightTouchBtn":
+		// 	// 方向鍵右 Code 為39
+		// 	pre_control(0,39)
+		// 	break;		
+		case "phoneStartBtn":
+		// 進入全屏模式
+		document.body.requestFullscreen();
+		document.getElementById("phoneStartBtn").setAttribute("style","display: none ;");
+		// 空白鍵 Code 為32
+		pause();
+		break;		
+	}
+}
 
 
 addEventListener("touchstart", handleTouchEvent);
 addEventListener("touchend", handleTouchEvent);
-addEventListener("touchmove", handleTouchEvent);
+addEventListener("touchmove", handleTouchEvent,false);
 var startX;
 var startY;
 function handleTouchEvent(event) {
@@ -373,7 +376,7 @@ function handleTouchEvent(event) {
 
 			break;
 		case "touchmove":	
-			event.preventDefault();			
+			// event.preventDefault();			
 	}
 	}
 
@@ -683,6 +686,13 @@ function dead_gray(player){
 	document.getElementById("snake_head_"+player).setAttribute("style", "background-image: url('resource/image/RabitNo.gif')")
 	
 	restarted = false;
+
+	// 假如是手機開啟，則重新呼叫開始
+	if(isMobile)
+	{
+		document.getElementById("phoneStartBtn").setAttribute("style","display: block ;");
+
+	}
 }
 
 function pre_control(player,keycode){	
@@ -744,8 +754,7 @@ function turn_direction(player){
 
 alert("press space to start/pause")
 
-// 進入全屏模式
-document.body.requestFullscreen();
+
 
 restart()
 
