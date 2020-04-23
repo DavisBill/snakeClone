@@ -1,4 +1,8 @@
-body {background-color: rgb(0, 255, 255);}
+body {
+	background-color: rgb(0, 255, 255);
+	/* 避免Chorm 因為下滑而自動 refresh 介面 */
+	overscroll-behavior: contain; 
+}
 
 h1 {color:black; font-size:18px;  }
 
