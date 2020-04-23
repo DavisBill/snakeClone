@@ -332,7 +332,8 @@ function touch_control(event)
 		// 	break;		
 		case "phoneStartBtn":
 		// 進入全屏模式
-		document.body.requestFullscreen();
+		// iOS 疑似沒有這個API  先註解起來看看
+		// document.body.requestFullscreen();
 		document.getElementById("phoneStartBtn").setAttribute("style","display: none ;");
 		// 空白鍵 Code 為32
 		pause();
