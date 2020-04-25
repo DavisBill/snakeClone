@@ -785,7 +785,9 @@ function bomb_clock(player, obj_body_with_bomb){//the bomb is going to explore
 function bomb_explore(player){//讓被標注的爆吧！
 	for(var i = 0; i < snake_body_array[player].length; i++){
 		if(snake_body_array[player][i].getAttribute("class") == "body_going_explore"){
+			snake_body_array[player][i].remove();//將身為炸彈的那一節移除
 			snake_body_array[player].splice(i, 1);
+
 		}
 	}
 }
