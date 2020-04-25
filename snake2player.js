@@ -516,7 +516,7 @@ function restart(){
 		size(i)
 	}
 	for (var i = 0; i < setting("n_food"); i++) {
-		creat_food()
+		creat_food('food')
 	}
 	
 	opensound.currentTime =0;
