@@ -102,7 +102,7 @@ function creat_body(player){
 	para.setAttribute("id", id_name)
 	para.setAttribute("class", "snake_body_"+player);
 	para.setAttribute("style", "left: "+x[player]+"px; top: "+y[player]+"px; transform:"+ snake_head[player].style.transform +";") 
-	snake_body_array[player][snake_body_id_num[player]] = document.getElementById(id_name)
+	snake_body_array[player].push(para)//原本：snake_body_array[player][snake_body_id_num[player]] = document.getElementById(id_name)
 	snake_body_id_num[player] = snake_body_id_num[player] + 1
 	score(player)
 }
@@ -169,6 +169,8 @@ function head_move(player){
 		snake_body_follow(player)
 		without_border(player)
 		eat_food(player)
+		bomb_explore(player) //#bomb! 增加判斷是否有需要爆炸的bomb。因為牽涉到身體的長度（arrary.length），所以必須要在這個時間點更改
+
 	}
 }
 
@@ -383,44 +385,48 @@ function handleTouchEvent(event) {
 
 
 
-
-
-function creat_food(){
+//#bomb!擴充一個parameter(kind_food)，讓東西生成可以選擇"food" or "bomb"
+function creat_food(kind_food){
 
 	var lx = Math.floor((playground_w/snake_unit)*Math.random())*snake_unit
 	var ly = Math.floor((playground_h/snake_unit)*Math.random())*snake_unit
 	var pg = document.getElementById("playground")
-	var id_name = "food" + food_id_num
+	var id_name = kind_food + food_id_num
 	var para=document.createElement("DIV")
 	pg.append(para);
 	para.setAttribute("id", id_name)
-	para.setAttribute("class", "food");
+	para.setAttribute("class", kind_food);
 	para.setAttribute("style", "left: "+lx+"px; top: "+ly+"px;")
 	food_array[food_array.length] = document.getElementById(id_name)
 	food_id_num = food_id_num + 1
 }
 
-
+//#bomb!讓吃到東西的時候判斷，是吃到炸彈還是食物
 function eat_food(player){
 	for(i = 0; i < food_array.length; i++){
 		if(snake_head[player].style.left == food_array[i].style.left && snake_head[player].style.top == food_array[i].style.top){
-			
-
-			eatsound.currentTime =0;
-			
-			eatsound.play();
 
 			var food = food_array[i]
 			var pg = document.getElementById("playground")
 			pg.removeChild(food)
 			food_array.splice(i,1)
-			creat_body(player)
-			creat_food()
+			switch(food.getAttribute("class")){
+			case 'food':
+				creat_body(player)
+				creat_food('food')
+				break;
+			case 'bomb':
+				creat_body_with_bomb(player)
+				creat_food('bomb')
+				
+				break;
+
 			if(grade_lock == "true"){
 				grade(player)
 			}
-		}
+			}
 	} 
+	}
 }
 function end(player){
 	clearInterval(move[player])
@@ -752,10 +758,41 @@ function turn_direction(player){
 	
 	}
 }
+//#bomb!這樣子判斷會變得太複雜，應該效仿 class
+function creat_body_with_bomb(player){
+
+	var pg = document.getElementById("playground")
+	var id_name = "snake" + player + "_body" + snake_body_id_num[player]
+	var para=document.createElement("DIV");
+	pg.append(para);
+	para.setAttribute("id", id_name)
+	para.setAttribute("class", "snake_body_"+player);
+	para.classList.add("body_with_bomb") //只有bomb才有！
+	para.setAttribute("style", "left: "+x[player]+"px; top: "+y[player]+"px; transform:"+ snake_head[player].style.transform +";") 
+	snake_body_array[player].push(para)//原本：snake_body_array[player][snake_body_id_num[player]] = document.getElementById(id_name)
+	bomb_clock(player, para)//只有bomb才有！
+	snake_body_id_num[player] = snake_body_id_num[player] + 1
+	score(player)
+}
+//#bomb!
+function bomb_clock(player, obj_body_with_bomb){//the bomb is going to explore
+	setTimeout(function(){
+		// obj_body_with_bomb.classList.add("body_going_explore") // 標註起來
+		obj_body_with_bomb.setAttribute("class", "body_going_explore");
+	}, 3000);
+}
+//#bomb!
+function bomb_explore(player){//讓被標注的爆吧！
+	for(var i = 0; i < snake_body_array[player].length; i++){
+		if(snake_body_array[player][i].getAttribute("class") == "body_going_explore"){
+			snake_body_array[player].splice(i, 1);
+		}
+	}
+}
 
 alert("press space to start/pause")
 
-
+creat_food('bomb')//測試用，在一開始就造一個bomb
 
 restart()
 
@@ -764,7 +801,8 @@ restart()
 
 // document.getElementById('testbutton1').onclick = restart
 // document.getElementById('testbutton2').onclick = check_value
-// document.getElementById('testbutton3').onclick = creat_food
+document.getElementById('testbutton3').onclick = function(){creat_food('bomb')}//#bomb!
+
 
 // document.getElementById('testbutton4').onclick = recycle_food
 // document.getElementById('testbutton5').onclick = faster
