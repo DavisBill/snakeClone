@@ -275,7 +275,7 @@ function keboard_control(event){
 			check_value()
 			break;
 		case 51://3
-			creat_food()
+			creat_food('bomb')
 			break;
 		case 52://4
 			recycle_food()
@@ -792,9 +792,9 @@ function bomb_explore(player){//讓被標注的爆吧！
 
 alert("press space to start/pause")
 
-creat_food('bomb')//測試用，在一開始就造一個bomb
 
 restart()
+creat_food('bomb')//測試用，在一開始就造一個bomb
 
 
 
