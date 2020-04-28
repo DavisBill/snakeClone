@@ -65,6 +65,10 @@ var gameoversound = new Audio();
 gameoversound.src="resource/audio/gameoverBGM.mp3";
 
 
+//排出炸彈音樂
+var bombSound = new Audio();
+bombSound.src="resource/audio/bombSound.mp3";
+
 // 檢測是否為行動裝置
 var isMobile = false; //initiate as false
 // device detection
@@ -787,6 +791,8 @@ function bomb_explore(player){//讓被標注的爆吧！
 		if(snake_body_array[player][i].getAttribute("class") == "body_going_explore"){
 			snake_body_array[player][i].remove();//將身為炸彈的那一節移除
 			snake_body_array[player].splice(i, 1);
+			bombSound.play();
+
 
 		}
 	}
